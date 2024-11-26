@@ -1,0 +1,101 @@
+.stadium {
+    background-image: url("../images/stadium_background.webp");
+    z-index: -1;
+    /* object-fit: cover; */
+    background-size: 100% 50em;
+    background-position: center;
+    /* position: absolute; */
+    width: auto;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.badges {
+    width: 100%;
+    height: 25%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.badge-image {
+    background-image: url("../images/badg_noir.webp");
+    z-index: -1;
+    width: 6em;
+    height: 85%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+
+}
+.badge-image h1 {
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+    margin: 0;
+}
+.badge-titre {
+    height: 20%; 
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* padding: ; */
+}
+.badge-titre h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1em;
+    color: black;
+    text-shadow: 1px 1px gray;
+}
+
+/* fooormuulaiiireee */
+
+.formulaire {
+    background-color: black;
+    padding: 1em;
+    height: auto;
+    width: 100%;
+}
+.formulaire h3,label{
+    color: white;
+}
+.input-group {
+    display: flex;
+    padding: 0.3em ;
+}
+
+.input-group label {
+    margin-right: 0.5em;
+    font-size: 1.1em;
+}
+.formulaire input {
+    width: 50%;
+    font-size: small;
+    border-radius: 0;
+    background-color: #218838;
+    color: white;
+}
+.formulaire input:hover {
+    background-color: grey; /* Fond légèrement plus foncé */
+    cursor: pointer;
+}
+/* .formulaire select {
+    border-radius: 0.5em;
+    background-color: gray;
+    color: white;
+
+} */
+#formatio {
+    width: 50%;
+}
+
+

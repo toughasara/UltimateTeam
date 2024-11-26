@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="alt">
+    <title>FUT Champions Web App Ultimate Team</title>
+    <!-- css -->
+    <link rel="stylesheet" href="assests/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
+</head>
+<body>
+    <main class="my-5 row fut">
+        <section id="badges" class="col-9">
+            <div class="stadium row">
+                <div id="rw-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="st-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="lw-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="cm-3-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="cm-2-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="cm-1-badges" class="badges col-4">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="rb-badges" class="badges col-3">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="cb-2-badges" class="badges col-3">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="cb-1-badges" class="badges col-3">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="lb-badges" class="badges col-3">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+                <div id="gk-badges" class="badges col-12">
+                    <!-- badge -->
+                    <div class="badge-image">
+                        <h1>Ajouter Un Joueur</h1>
+                    </div>
+                    <div class="badge-titre">
+                        <h2>POSITION</h2>
+                    </div> 
+                </div>
+            </div>
+        </section>
+        <!-- formulaiiireee -->
+        <section id="form" class="col-3">
+            <div class="formulaire">
+                <form id="add-player-form">
+                    <h3>choose your formation</h3>
+                    <select id="formatio" class="btn btn-secondary">
+                        <option value="4-3-3" selected>4-3-3</option>
+                        <option value="4-4-2">4-4-2</option>
+                    </select>
+                    <h3>add a player</h3>
+
+                    <!-- innfoooormaaatiionnnnn -->
+                    <div class="input-group">
+                        <label for="player-name">the name:</label>
+                        <input type="text" id="player-name">
+                    </div>
+
+                    <!-- innfoooormaaatiionnnnn -->
+                    <div class="input-group">
+                        <label for="player-nationality">the nationality:</label>
+                        <input type="text" id="player-nationality" required>
+                    </div>
+                    <!-- innfoooormaaatiionnnnn -->
+                    <div class="input-group">
+                        <label for="player-flag">the club:</label>
+                        <input type="text" id="player-club" name="club" required>
+                    </div>
+
+                    <!-- innfoooormaaatiionnnnn -->
+                    <div class="input-group">
+                        <label for="player-postion">the postion:</label>
+                        <select id="player-position" class="btn btn-secondary" required>
+                            <option value="GK">Gardien de but (GK)</option>
+                            <option value="CB">Défenseur central (CB)</option>
+                            <option value="LB">Latéral gauche (LB)</option>
+                            <option value="RB">Latéral droit (RB)</option>
+                            <option value="CD">Défenseurs centraux (CD)</option>
+                            <option value="CM">Milieu central (CM)</option>
+                            <option value="LW">Ailier gauche (LW)</option>
+                            <option value="RW">Ailier droit (RW)</option>
+                            <option value="LM">Milieu gauche (LM)</option>
+                            <option value="RM">Milieu droit (RM)</option>
+                            <option value="ST">Attaquant (ST)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="player-rating">the rate:</label>
+                        <input type="number" id="player-rating" name="rating" min="10" max="100" required>
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="player-pace">the pace:</label>
+                        <input type="number" id="player-pace" name="pacing" min="10" max="100" required>
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="player-shooting">the shooting:</label>
+                        <input type="number" id="player-shooting" name="shooting" min="10" max="100" required>
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="player-passing">the passing:</label>
+                        <input type="number" id="player-passing" name="passing" min="10" max="100" required>
+                    </div>
+    
+                    <div class="input-group">
+                        <label for="player-dribbling">the dribbling:</label>
+                        <input type="number" id="player-dribbling" name="dribbling" min="10" max="100" required>
+                    </div>
+    
+    
+                    <div class="input-group">
+                        <label for="player-defending">the defending:</label>
+                        <input type="number" id="player-defending" class="btn btn-success" name="defending" min="10" max="100" required>
+                    </div>
+    
+    
+                    <div class="input-group">
+                        <label for="player-physical">the physical:</label>
+                        <input type="number" id="player-physical" class="btn btn-success" name="physical" min="10" max="100" required>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-secondary w-75" onclick="affichage()"><strong>add palyer</strong></button>
+                    </div>    
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- js -->
+    <script src="assests/js/main.js"></script>
+</body>
+</html>
+
