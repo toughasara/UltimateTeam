@@ -13,7 +13,6 @@
     align-items: center;
 }
 .badges {
-    background-color: aqua;
     width: 100%;
     height: 25%;
     overflow: hidden;
@@ -44,7 +43,6 @@
     margin: 0;
 } */
 .badge-image {
-    background-color: blueviolet;
     width: 6em;
     height: 90%;
     background-size: cover;
@@ -54,7 +52,7 @@
     justify-content: center;
     align-items: center;
     padding: 0 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 .badge-image img {
     width: auto;
@@ -73,6 +71,7 @@
 }
 .contenu h4 {
     font-size: 1.1em;
+    color: white;
 }
 .rating {
     position: absolute;
@@ -118,6 +117,21 @@
 }
 .nomb {
     line-height: 0.3em;
+}
+
+.logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    gap: 0.3em;
+    padding: 0;
+    height: 0;
+    padding-top: 0.2em;
+}
+.logos img {
+    background-color: #218838;
+    width: 0.5em;
+    height: 0.5em;
 }
 /* .carda {
     margin: 0;
