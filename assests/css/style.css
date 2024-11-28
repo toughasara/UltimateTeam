@@ -257,6 +257,9 @@
     color: white;
 
 } */
+.formulaire button {
+    margin-top: 0.8em;
+}
 #formatio {
     width: 50%;
 }

@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // const dribblingInput = document.getElementById('player-dribbling');
     // const defendingInput = document.getElementById('player-defending');
     // const physicalInput = document.getElementById('player-physical');
-    const addpalyer = document.querySelector("button[type='submit']");
+    const boutonAddStatistiques = document.querySelector("button[type='button']");
+    const boutonAddPlayer = document.querySelector("button[type='submit']");
     const Input = document.querySelectorAll('input');
     const positionInput = document.getElementById('player-position');
     const GKbadges = document.querySelector("#gk-badges");
@@ -18,25 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let joueurs = localStorage.getItem('joueurs') || [];
     let sub = localStorage.getItem('sub') || [];
     let position = positionInput.value;
-    let GK = empty;
-    let CB = empty;
-    let LB = empty;
-    let RB = empty;
-    let CD = empty;
-    let CM = empty;
-    let LW = empty;
-    let RW = empty;
-    let LM = empty;
-    let RM = empty;
-    let ST = empty;
-
 
     // vaaaliiidaaationnn
     function validation() {
         return Input.value.trim().length > 0;
     }
     function etatdebouton() {
-        addpalyer.disabled = !validation();
+        boutonAddPlayer.disabled = !validation();
     }
     document. forms [0].onsubmit = function (event) {
         let infoValid = false;
@@ -51,28 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-
-
-    function affichierFavorites() {
-        joueurs.innerHTML = "";  
-        if (favorites.length === 0) {
-            favoritespage.innerHTML = "<p>Aucun produit dans les favoris.</p>";
-        }
-        else {
-            favorites.forEach(produit => {
-                const favoritCard = `
-                    <div class="card favorite-card">
-                        <img src="${produit.image}" alt="${produit.name}">
-                        <h5>${produit.name}</h5>
-                        <p>$${produit.price.toFixed(2)}</p>
-                        <button class="btn btn-outline-danger btn-sm" onclick="supprimerdefavories(${produit.id})"><i class="fas fa-heart-broken"></i> Retirer</button>
-                        <button class="btn btn-outline btn-sm" onclick="addToCart(${produit.id})"><i class="fas fa-shopping-cart"></i> Ajouter Au panier</button>
-                    </div>
-                `;
-                favoritespage.innerHTML += favoritCard;
-            });
+    // pooosiiitiiiooonn
+    function formposition() {
+        if(validation){
+            if(position === GK){}
+            else{}
         }
     }
+
 
     // affiiiiiichaaaaaageeeee
     function afficherjours() {
@@ -159,27 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function affichierFavorites() {
-        favoritespage.innerHTML = "";  
-        if (favorites.length === 0) {
-            favoritespage.innerHTML = "<p>Aucun produit dans les favoris.</p>";
-        }
-        else {
-            favorites.forEach(produit => {
-                const favoritCard = `
-                    <div class="card favorite-card">
-                        <img src="${produit.image}" alt="${produit.name}">
-                        <h5>${produit.name}</h5>
-                        <p>$${produit.price.toFixed(2)}</p>
-                        <button class="btn btn-outline-danger btn-sm" onclick="supprimerdefavories(${produit.id})"><i class="fas fa-heart-broken"></i> Retirer</button>
-                        <button class="btn btn-outline btn-sm" onclick="addToCart(${produit.id})"><i class="fas fa-shopping-cart"></i> Ajouter Au panier</button>
-                    </div>
-                `;
-                favoritespage.innerHTML += favoritCard;
-            });
-        }
-    }
-
     function affichersub() {
         
     }
@@ -199,19 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('sub', position);  
             alert("pas de place disponible , joueur ajouter au remplacement !");
             affichersub();
-        }
-    }
-    function ajouteraufavories(produitId){
-        const produit = { id: produitId };
-        const produitExists = favorites.some(item => item.id === produitId);
-        if (!produitExists) {
-            favorites.push(produit); 
-            localStorage.setItem('favorites', JSON.stringify(favorites));  
-            alert("Produit ajouté aux favoris !");
-            affichierFavorites();
-        }
-        else {
-            alert("Produit déjà dans les favoris.");
         }
     }
 
