@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // const dribblingInput = document.getElementById('player-dribbling');
     // const defendingInput = document.getElementById('player-defending');
     // const physicalInput = document.getElementById('player-physical');
-    const boutonAddStatistiques = document.querySelector("button[type='button']");
+    // const inputnumbrs = document.querySelectorAll('.numeros');
+    const statique = document.querySelectorAll(".static");
+    const form1 = document.getElementById("form1");
+    const form2 = document.getElementById("form2");
     const boutonAddPlayer = document.querySelector("button[type='submit']");
     const Input = document.querySelectorAll('input');
     const positionInput = document.getElementById('player-position');
@@ -19,8 +22,44 @@ document.addEventListener("DOMContentLoaded", () => {
     let joueurs = localStorage.getItem('joueurs') || [];
     let sub = localStorage.getItem('sub') || [];
     let position = positionInput.value;
-
+    
     // vaaaliiidaaationnn
+    function validatform() {
+        const inputnumbrs = document.querySelectorAll('.numeros');
+        let toutvalid = true;
+
+        inputnumbrs.forEach(function(input) {
+            if (input.value.trim() === '') {
+                allValid = false;
+                input.style.borderColor = 'red';
+                boutonAddPlayer.disabled = true;
+                alert('Ce champ ne peut pas être vide');
+            } 
+            else {
+                input.style.borderColor = '';
+                boutonAddPlayer.disabled = false;
+            }
+        });
+
+        if (allValid) {
+            boutonAddPlayer.disabled = false;
+        } else {
+            boutonAddPlayer.disabled = true;
+        }
+    }
+
+    function affichform() {
+        form1.classList.add("d-none");
+        form2.classList.add("d-none");
+
+        if(positionInput.value === 'GK'){
+            form2.classList.remove("d-none");
+        }
+        else{
+            form1.classList.remove("d-none");
+        }
+    }
+
     function validation() {
         return Input.value.trim().length > 0;
     }
@@ -47,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
             else{}
         }
     }
-
 
     // affiiiiiichaaaaaageeeee
     function afficherjours() {
@@ -161,4 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('joueurs', joueurs);
     }
 
+
+    positionInput.addEventListener('input', () => affichform());
 });
