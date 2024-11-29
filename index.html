@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="assests/css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assests/css/bootstrap.min.css">
+    <!-- icones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <main class="my-5 row fut">
@@ -157,7 +159,9 @@
                         </div>
                     </div>
                     <div class="badge-titre">
-                        <h2>POSITION</h2>
+                        <div class="d-flex justify-content-center ajmosu">
+                            <button type="button" class="" onclick="modifier()"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
                     </div> 
                 </div>
                 <div id="lb-badges" class="badges col-3">
@@ -187,12 +191,66 @@
             </div>
 
             <!-- reeeeeeeeeenplaaaaaaaaaaaaaaaceeeeeeeeeeeeeeemeeeeeeeeeeeeeeeeeeeeeeeeent  -->
-            <div class="remp d-flex justify-content-start flex-wrap">
+            <div id="remp" class="d-flex justify-content-start flex-wrap">
                 <div class="carte">
                     <!-- jjjjjjjjjjjjjjjjsssssssssssssss -->
                 </div>
+                <!-- <div class="carte">
+
+                    <div class="badge-image">
+                        <img src="assests/images/badge_gold.webp" alt="description">
+                        <div class="contenu">
+                            <div class="rating">
+                                <div class="nom">
+                                    <p>90 <br> GK </p>
+                                </div>
+                            </div>
+                            <div class="profil-player">
+                                <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="">
+                            </div>
+                            <div class="nom-player">
+                                <h6>Nomjoueur</h6>
+                            </div>
+                            <div class="statistiques">
+                                <div class="nomb">
+                                    <p>PAC <br> 44 </p>
+                                </div>
+                                <div class="nomb">
+                                    <p>SHO <br> 93</p>
+                                </div>
+                                <div class="nomb">
+                                    <p>PASS <br>86</p>
+                                </div>
+                                <div class="nomb">
+                                    <p>DRI <br>73</p>
+                                </div>
+                                <div class="nomb">
+                                    <p>DEF <br>19</p>
+                                </div>
+                                <div class="nomb">
+                                    <p>PHY <br>25</p>
+                                </div>
+                            </div>
+                            <div class="logos">
+                                <div class="natio">
+                                    <img src="https://cdn.sofifa.net/flags/pt.png" alt="">
+                                </div>
+                                <div class="club">
+                                    <img src="https://cdn.sofifa.net/meta/team/2506/120.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="badge-titre">
+                        <div class="d-flex justify-content-center ajmosu">
+                            <button type="button" class="" onclick="ajoueuipe()"><i class="fa-solid fa-plus"></i></button>
+                            <button type="button" class="" onclick="supprimer()"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="" onclick="modifier()"><i class="fa-solid fa-pen"></i></button>
+                        </div>
+                    </div> 
+                </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -204,7 +262,7 @@
                     </div> 
                 </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -216,7 +274,7 @@
                     </div> 
                 </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -228,7 +286,7 @@
                     </div> 
                 </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -240,7 +298,7 @@
                     </div> 
                 </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -252,7 +310,7 @@
                     </div> 
                 </div>
                 <div class="carte">
-                    <!-- badge -->
+
                     <div class="badge-image">
                         <img src="assests/images/badg_noir.webp" alt="description">
                         <div class="contenu">
@@ -262,19 +320,7 @@
                     <div class="badge-titre">
                         <h2>POSITION</h2>
                     </div> 
-                </div>
-                <div class="carte">
-                    <!-- badge -->
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
-                </div>
+                </div> -->
                 
             </div>
         </section>
@@ -292,19 +338,20 @@
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
                         <label for="player-name">the name:</label>
-                        <input type="text" id="player-name" placeholder="Nom du joueur">
+                        <input type="text" id="player-name" class="infos">
+                        <p id="erreur" class="text-danger d-none">Veuillez remplir ce champ</p>
                     </div>
 
                     <!-- innfoooormaaatiionnnnn -->
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <label for="player-photo">player photo:</label>
                         <input type="file" id="player-photo" name="photo" accept="image/*" required>
-                    </div>
+                    </div> -->
 
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
                         <label for="player-nationality">the nationality:</label>
-                        <select id="player-nationality" class="btn btn-success" required>
+                        <select id="player-nationality" class="infos btn btn-success" required>
                             <option value="" disabled selected>-- Please select a nationality --</option>
                             <option value="GK">Brésil</option>
                             <option value="CB">Argentine</option>
@@ -328,7 +375,7 @@
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
                         <label for="player-flag">the club:</label>
-                        <select id="player-flag" class="btn btn-secondary" required>
+                        <select id="player-flag" class="infos btn btn-success" required>
                             <option value="" disabled selected>-- Please select a club --</option>
                             <option value="">Real Madrid</option>
                             <option value="">FC Barcelone</option>
@@ -345,8 +392,8 @@
 
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
-                        <label for="player-position">the postion:</label>
-                        <select id="player-position" class="btn btn-secondary" required>
+                        <label for="player-position">the position:</label>
+                        <select id="player-position" name="position" class="infos btn btn-success" required>
                             <option value="" disabled selected>-- Please select a position --</option>
                             <option value="GK">Gardien de but (GK)</option>
                             <option value="CB">Défenseur central (CB)</option>
@@ -398,10 +445,10 @@
                             <input type="number" id="player-physical" class="numeros" name="physical" min="10" max="100" required>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-secondary w-75" onclick="verification()"><strong>add palyer</strong></button>
+                            <button type="submit" class="btn btn-secondary w-75" onclick="clique()"><strong>add palyer</strong></button>
                         </div>     
                     </div>
-                    
+        
                     <!-- staaaaatiiiiiquuuuueeeee GK-->
                     <div class="static d-none" id="form2">
                         <div class="input-group">
@@ -438,8 +485,9 @@
                             <label for="player-positioning">the positioning:</label>
                             <input type="number" id="player-positioning" class="numeros" name="positioning" min="10" max="100" required>
                         </div>
+        
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-secondary w-75" onclick="verification()"><strong>add palyer</strong></button>
+                            <button type="submit" class="btn btn-secondary w-75" onclick="clique()"><strong>add palyer</strong></button>
                         </div>     
                     </div>
                 </form>
@@ -452,4 +500,5 @@
     <script src="assests/js/main.js"></script>
 </body>
 </html>
+
 

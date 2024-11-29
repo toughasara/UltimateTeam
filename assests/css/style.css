@@ -272,7 +272,7 @@
 } */
 
 /* remmplaaaceeeemeeeenttt */
-.remp {
+#remp {
     background-color: rgb(57, 54, 54);
     padding: 3em;
     /* position: relative;
@@ -288,4 +288,11 @@
     align-items: center;
     padding-bottom: 1em;
 }
-
+.ajmosu {
+    background-color: blueviolet;
+    /* color: #218838; */
+}
+.ajmosu button {
+    background-color: #e2ba5f;
+    font-size: x-small;
+}
