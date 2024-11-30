@@ -196,7 +196,6 @@
                     <!-- jjjjjjjjjjjjjjjjsssssssssssssss -->
                 </div>
                 <!-- <div class="carte">
-
                     <div class="badge-image">
                         <img src="assests/images/badge_gold.webp" alt="description">
                         <div class="contenu">
@@ -260,66 +259,6 @@
                     <div class="badge-titre">
                         <h2>POSITION</h2>
                     </div> 
-                </div>
-                <div class="carte">
-
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
-                </div>
-                <div class="carte">
-
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
-                </div>
-                <div class="carte">
-
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
-                </div>
-                <div class="carte">
-
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
-                </div>
-                <div class="carte">
-
-                    <div class="badge-image">
-                        <img src="assests/images/badg_noir.webp" alt="description">
-                        <div class="contenu">
-                            <h4>remplacer</h4> 
-                        </div>
-                    </div>
-                    <div class="badge-titre">
-                        <h2>POSITION</h2>
-                    </div> 
                 </div> -->
                 
             </div>
@@ -338,56 +277,26 @@
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
                         <label for="player-name">the name:</label>
-                        <input type="text" id="player-name" class="infos">
+                        <input type="text" id="player-name" class="infos" name="name"  required>
                         <p id="erreur" class="text-danger d-none">Veuillez remplir ce champ</p>
                     </div>
 
                     <!-- innfoooormaaatiionnnnn -->
-                    <!-- <div class="input-group">
-                        <label for="player-photo">player photo:</label>
-                        <input type="file" id="player-photo" name="photo" accept="image/*" required>
-                    </div> -->
-
-                    <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
-                        <label for="player-nationality">the nationality:</label>
-                        <select id="player-nationality" class="infos btn btn-success" required>
-                            <option value="" disabled selected>-- Please select a nationality --</option>
-                            <option value="GK">Brésil</option>
-                            <option value="CB">Argentine</option>
-                            <option value="LB">Allemagne</option>
-                            <option value="RB">Italie</option>
-                            <option value="CD">Espagne</option>
-                            <option value="CM">France</option>
-                            <option value="LW">Angleterre</option>
-                            <option value="RW">Portugal</option>
-                            <option value="LM">Pays-Bas</option>
-                            <option value="RM">Uruguay</option>
-                        </select>
+                        <label for="player-photo">player photo:</label>
+                        <input type="url" id="player-photo" class="urls" name="photo"  required>
                     </div>
 
-                    <!-- innfoooormaaatiionnnnn
+                    <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
-                        <label for="player-flag">the club:</label>
-                        <input type="text" id="player-club" name="club" required>
-                    </div> -->
+                        <label for="player-club">the club URL:</label>
+                        <input type="url" id="player-club" class="urls" name="club" required>
+                    </div>
 
                     <!-- innfoooormaaatiionnnnn -->
                     <div class="input-group">
-                        <label for="player-flag">the club:</label>
-                        <select id="player-flag" class="infos btn btn-success" required>
-                            <option value="" disabled selected>-- Please select a club --</option>
-                            <option value="">Real Madrid</option>
-                            <option value="">FC Barcelone</option>
-                            <option value="">Manchester United</option>
-                            <option value="">Liverpool FC</option>
-                            <option value="">Bayern Munich</option>
-                            <option value="">Juventus</option>
-                            <option value="">AC Milan</option>
-                            <option value="">Paris Saint-Germain</option>
-                            <option value="">Chelsea FC</option>
-                            <option value="">Manchester City</option>
-                        </select>
+                        <label for="player-nationality">the nationality URL:</label>
+                        <input type="url" id="player-nationality" class="urls" name="nationality" required>
                     </div>
 
                     <!-- innfoooormaaatiionnnnn -->
@@ -412,84 +321,80 @@
                     <div class="static d-none" id="form1">
                         <div class="input-group">
                             <label for="player-rating">the rate:</label>
-                            <input type="number" id="player-rating" class="numeros" name="rating" min="10" max="100" required>
+                            <input type="number" id="player-rating" class="numerosnot" name="ratingnot" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-pace">the pace:</label>
-                            <input type="number" id="player-pace" class="numeros" name="pacing" min="10" max="100" required>
+                            <input type="number" id="player-pace" class="numerosnot" name="pacing" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-shooting">the shooting:</label>
-                            <input type="number" id="player-shooting" class="numeros" name="shooting" min="10" max="100" required>
+                            <input type="number" id="player-shooting" class="numerosnot" name="shooting" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-passing">the passing:</label>
-                            <input type="number" id="player-passing" class="numeros" name="passing" min="10" max="100" required>
+                            <input type="number" id="player-passing" class="numerosnot" name="passing" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-dribbling">the dribbling:</label>
-                            <input type="number" id="player-dribbling" class="numeros" name="dribbling" min="10" max="100" required>
+                            <input type="number" id="player-dribbling" class="numerosnot" name="dribbling" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-defending">the defending:</label>
-                            <input type="number" id="player-defending" class="numeros" name="defending" min="10" max="100" required>
+                            <input type="number" id="player-defending" class="numerosnot" name="defending" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-physical">the physical:</label>
-                            <input type="number" id="player-physical" class="numeros" name="physical" min="10" max="100" required>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-secondary w-75" onclick="clique()"><strong>add palyer</strong></button>
-                        </div>     
+                            <input type="number" id="player-physical" class="numerosnot" name="physical" min="10" max="100" required>
+                        </div>  
                     </div>
         
                     <!-- staaaaatiiiiiquuuuueeeee GK-->
                     <div class="static d-none" id="form2">
                         <div class="input-group">
                             <label for="player-rating">the rate:</label>
-                            <input type="number" id="player-rating" class="numeros" name="rating" min="10" max="100" required>
+                            <input type="number" id="player-rating" class="numerosgk" name="ratinggk" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-diving">the diving:</label>
-                            <input type="number" id="player-diving" class="numeros" name="diving" min="10" max="100" required>
+                            <input type="number" id="player-diving" class="numerosgk" name="diving" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-handling">the handling:</label>
-                            <input type="number" id="player-handling" class="numeros" name="handling" min="10" max="100" required>
+                            <input type="number" id="player-handling" class="numerosgk" name="handling" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-kicking">the kicking:</label>
-                            <input type="number" id="player-kicking" class="numeros" name="kicking" min="10" max="100" required>
+                            <input type="number" id="player-kicking" class="numerosgk" name="kicking" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-reflexes">the reflexes:</label>
-                            <input type="number" id="player-reflexes" class="numeros" name="reflexes" min="10" max="100" required>
+                            <input type="number" id="player-reflexes" class="numerosgk" name="reflexes" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-speed">the speed:</label>
-                            <input type="number" id="player-speed" class="numeros" name="speed" min="10" max="100" required>
+                            <input type="number" id="player-speed" class="numerosgk" name="speed" min="10" max="100" required>
                         </div>
         
                         <div class="input-group">
                             <label for="player-positioning">the positioning:</label>
-                            <input type="number" id="player-positioning" class="numeros" name="positioning" min="10" max="100" required>
+                            <input type="number" id="player-positioning" class="numerosgk" name="positioning" min="10" max="100" required>
                         </div>
-        
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-secondary w-75" onclick="clique()"><strong>add palyer</strong></button>
-                        </div>     
                     </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="add-player-button" type="submit" class="btn btn-secondary w-75" onclick="clique()"><strong>add palyer</strong></button>
+                    </div>   
                 </form>
             </div>
         </section>

@@ -1,17 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // const nameInput = document.getElementById('player-name');
-    // const natioInput = document.getElementById('player-nationality');
-    // const clubInput = document.getElementById('player-club');
-    // const positionInput = document.getElementById('player-position');
-    // const rateInput = document.getElementById('player-rating');
-    // const paceInput = document.getElementById('player-pace');
-    // const shootingInput = document.getElementById('player-shooting');
-    // const passingInput = document.getElementById('player-passing');
-    // const dribblingInput = document.getElementById('player-dribbling');
-    // const defendingInput = document.getElementById('player-defending');
-    // const physicalInput = document.getElementById('player-physical');
-    // const inputnumbrs = document.querySelectorAll('.numeros');
-    // const statique = document.querySelectorAll(".static");
     const Inputs = document.querySelectorAll('input');
     const positionInput = document.getElementById('player-position');
     const GKbadges = document.querySelector("#gk-badges");
@@ -19,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
     const trainjrs = JSON.parse(localStorage.getItem("subs")) || [];
     let position = positionInput.value;
-    
+    const addButton = document.getElementById('add-player-button');
+
     // affiiichaaage de formuuulaaaiiiree dynaaamiiique
     function affichform() {
         const form1 = document.getElementById("form1");
@@ -36,32 +24,49 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
     // vaaaliiidaaationnn des chaaaammmmps
     function validatform() {
         const boutonAddPlayer = document.querySelector("button[type='submit']");
-        const inputnumbrs = document.querySelectorAll('.numeros');
-        const inputinfos = document.querySelectorAll('.infos');
+        const numerosnot = document.querySelectorAll('.numerosnot');
+        const numerosgk = document.querySelectorAll('.numerosgk');
+        const inputinfos = document.querySelector('.infos');
+        const inputurls = document.querySelectorAll('.urls');
         let toutvalid = true;
 
-        inputnumbrs.forEach(function(input) {
-            if (input.value.trim().length < 10 || input.value.trim().length > 100) {
+        const numerosnotValid = Array.from(numerosnot).every(input => {
+            const value = parseInt(input.value.trim(), 10);
+            return value >= 10 && value <= 99;
+        });
+
+        const numerosgkValid = Array.from(numerosgk).every(input => {
+            const value = parseInt(input.value.trim(), 10); 
+            return value >= 10 && value <= 99;
+        });
+
+
+        if (inputinfos) {
+            const nameValue = inputinfos.value.trim();
+            const namePattern = /^[A-Za-z\s]+$/;
+            if (nameValue.length < 3 || nameValue.length > 50 || !namePattern.test(nameValue)) {
                 toutvalid = false;
-                // input.style.borderColor = 'red';
+            }
+        }
+
+        inputurls.forEach(function(input) {
+            const urlPattern = /^(https?:\/\/)?[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:\d+)?(\/[^\s]*)?$/;
+            if (!urlPattern.test(input.value.trim())) {
+                toutvalid = false;
             } 
         });
 
-        inputinfos.forEach(function(input) {
-            if (input.value.trim() === "") {
-                toutvalid = false;
-            } 
-        });
+        toutvalid = toutvalid && (numerosnotValid || numerosgkValid);
 
-        boutonAddPlayer.disabled = !toutvalid;
         return toutvalid;
     }
 
     // stooooockkkerrrr le jouur
-    function saveUser() {
+    function saveJrs() {
         const form = document.getElementById('add-player-form');
 
         // cree object FormData
@@ -90,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartesjours = document.getElementById('remp');
         cartesjours.innerHTML = '';
         joueurs.forEach((jour) =>  {
-            if(position === GK){
+            if(position === 'GK'){
                 cartesjours.innerHTML += `
                 <div class="carte">
                     <div class="badge-image">
@@ -98,14 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="contenu">
                             <div class="rating">
                                 <div class="nom">
-                                    <p>${jour.rating} <br> ${jour.position} </p>
+                                    <p>${jour.ratinggk} <br> ${jour.position} </p>
                                 </div>
                             </div>
                             <div class="profil-player">
-                                <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="">
+                                <img src="${jour.photo}" alt="">
                             </div>
                             <div class="nom-player">
-                                <h6>${jour.nom}</h6>
+                                <h6>${jour.name}</h6>
                             </div>
                             <div class="statistiques">
                                 <div class="nomb">
@@ -129,10 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                             <div class="logos">
                                 <div class="natio">
-                                    <img src="https://cdn.sofifa.net/flags/pt.png" alt="">
+                                    <img src="${jour.nationality}" alt="">
                                 </div>
                                 <div class="club">
-                                    <img src="https://cdn.sofifa.net/meta/team/2506/120.png" alt="">
+                                    <img src="${jour.club}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -155,14 +160,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="contenu">
                             <div class="rating">
                                 <div class="nom">
-                                    <p>${jour.rating} <br> ${jour.position} </p>
+                                    <p>${jour.ratingnot} <br> ${jour.position} </p>
                                 </div>
                             </div>
                             <div class="profil-player">
-                                <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="">
+                                <img src="${jour.photo}" alt="">
                             </div>
                             <div class="nom-player">
-                                <h6>${jour.nom}</h6>
+                                <h6>${jour.name}</h6>
                             </div>
                             <div class="statistiques">
                                 <div class="nomb">
@@ -172,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <p>SHO <br> ${jour.shooting}</p>
                                 </div>
                                 <div class="nomb">
-                                    <p>PASS <br>${jour.passing}</p>
+                                    <p>PAS <br>${jour.passing}</p>
                                 </div>
                                 <div class="nomb">
                                     <p>DRI <br>${jour.dribbling}</p>
@@ -186,10 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                             <div class="logos">
                                 <div class="natio">
-                                    <img src="https://cdn.sofifa.net/flags/pt.png" alt="">
+                                    <img src="${jour.nationality}" alt="">
                                 </div>
                                 <div class="club">
-                                    <img src="https://cdn.sofifa.net/meta/team/2506/120.png" alt="">
+                                    <img src="${jour.club}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -212,15 +217,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function clique() {
         const validationreussie = validatform();
         if (validationreussie) {
-            saveUser();
-            affichjrrmp();
+            saveJrs();
         } 
         else {
-            alert('Ces champ ne peut pas être vide');
+            alert('Veuillez remplir tous les champs correctement');
         }
     }
 
     // function afficherjours() {
+
     //     switch(position) {
     //         case GK:
     //             GKbadges.innerHTML = `
@@ -304,28 +309,10 @@ document.addEventListener("DOMContentLoaded", () => {
     //     }
     // }
 
-    // function affichersub() {
-        
-    // }
-
-    // ajouuuuuteeeerrr jouuuueuuuur
-    // function ajouterplayer(position){
-    //     const badgecherch = joueurs.some(item => item.position === position);
-    //     if (!badgecherch) {
-    //         joueurs.push(position); 
-    //         // localStorage.setItem('joueurs', position);
-    //         alert("joueur ajouté !");
-    //         saveplayer()
-    //         afficherjours();
-    //     }
-    //     else {
-    //         sub.push(position); 
-    //         localStorage.setItem('sub', position);  
-    //         alert("pas de place disponible , joueur ajouter au remplacement !");
-    //         affichersub();
-    //     }
-    // }
-
 
     positionInput.addEventListener('input', () => affichform());
+    addButton.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default form submission if inside a form
+        clique();
+    });
 });
