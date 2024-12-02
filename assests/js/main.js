@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const Inputs = document.querySelectorAll('input');
+    const modal = document.getElementById('modal');
     const positionInput = document.getElementById('player-position');
-    const GKbadges = document.querySelector("#gk-badges");
-    const LBbadges = document.querySelector("#lb-badges");
     const joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
-    const trainjrs = JSON.parse(localStorage.getItem("subs")) || [];
     let position = positionInput.value;
     const addButton = document.getElementById('add-player-button');
 
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return toutvalid;
     }
 
-    // stooooockkkerrrr le jouur
+    // stooooockkkeeeeeeeeerrrr le jooooooouuuuuuuuur
     function saveJrs() {
         const form = document.getElementById('add-player-form');
 
@@ -90,12 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
         form.reset();
     }
 
-    // affiiiiichiiiieeeer tout jouuuurs
+    // affiiiiichiiiieeeer toooouuuuut jooooooouuuurs
     function affichjrrmp() {
         const cartesjours = document.getElementById('remp');
         cartesjours.innerHTML = '';
         joueurs.forEach((jour) =>  {
-            if(position === 'GK'){
+            if(jour.position === 'GK'){
                 cartesjours.innerHTML += `
                 <div class="carte">
                     <div class="badge-image">
@@ -224,95 +221,186 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // function afficherjours() {
+    // fiiiiiiiiiltreeeeeeeee array de joooooooooouuueeeeeuuuuurs
+    // Fonction pour filtrer les joueurs par position
+    function filterPlayers(joueurs, positionflt) {
+        // Si aucune position spécifique, on retourne tous les joueurs
+        return joueurs.filter(jour => jour.position === positionflt);
+    }
+    
+    // Fonction pour afficher les joueurs dans le div modal
+    function renderPlayers(filteredJoueurs) {
+        const modal = document.querySelector('#modal');
+        modal.innerHTML = ''; // Réinitialiser le contenu du modal
+        
+        // Créer des cartes pour chaque joueur filtré
+        filteredJoueurs.forEach(jour => {
+            // Affichage spécifique pour les joueurs de position "GK"
+            if (jour.position === 'GK') {
+                const playerCardGK = `
+                    <div class="cart">
+                        <div class="badge-image">
+                            <img src="assests/images/badge_gold.webp" alt="description">
+                            <div class="contenu">
+                                <div class="rating">
+                                    <div class="nom">
+                                        <p>${jour.ratinggk} <br> ${jour.position} </p>
+                                    </div>
+                                </div>
+                                <div class="profil-player">
+                                    <img src="${jour.photo}" alt="">
+                                </div>
+                                <div class="nom-player">
+                                    <h6>${jour.name}</h6>
+                                </div>
+                                <div class="statistiques">
+                                    <div class="nomb">
+                                        <p>DIV <br> ${jour.diving} </p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>HAN <br> ${jour.handling}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>KIC <br>${jour.kicking}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>REF <br>${jour.reflexes}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>SPE <br>${jour.speed}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>POS <br>${jour.positioning}</p>
+                                    </div>
+                                </div>
+                                <div class="logos">
+                                    <div class="natio">
+                                        <img src="${jour.nationality}" alt="">
+                                    </div>
+                                    <div class="club">
+                                        <img src="${jour.club}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="badge-titre">
+                            <div class="d-flex justify-content-center ajmosu">
+                                <button type="button" class="selection" onclick="selection()"><i class="fa-solid fa-check"></i></button>
+                            </div>
+                        </div> 
+                    </div>
+                `;
+                modal.innerHTML += playerCardGK;
+            } else {
+                // Affichage pour les autres joueurs
+                const playerCardOther = `
+                    <div class="cart">
+                        <div class="badge-image">
+                            <img src="assests/images/badge_gold.webp" alt="description">
+                            <div class="contenu">
+                                <div class="rating">
+                                    <div class="nom">
+                                        <p>${jour.ratingnot} <br> ${jour.position} </p>
+                                    </div>
+                                </div>
+                                <div class="profil-player">
+                                    <img src="${jour.photo}" alt="">
+                                </div>
+                                <div class="nom-player">
+                                    <h6>${jour.name}</h6>
+                                </div>
+                                <div class="statistiques">
+                                    <div class="nomb">
+                                        <p>PAC <br> ${jour.pacing} </p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>SHO <br> ${jour.shooting}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>PAS <br>${jour.passing}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>DRI <br>${jour.dribbling}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>DEF <br>${jour.defending}</p>
+                                    </div>
+                                    <div class="nomb">
+                                        <p>PHY <br>${jour.physical}</p>
+                                    </div>
+                                </div>
+                                <div class="logos">
+                                    <div class="natio">
+                                        <img src="${jour.nationality}" alt="">
+                                    </div>
+                                    <div class="club">
+                                        <img src="${jour.club}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="badge-titre">
+                            <div class="d-flex justify-content-center ajmosu">
+                                <button type="button" class="selection" onclick="selection()"><i class="fa-solid fa-check"></i></button>
+                            </div>
+                        </div> 
+                    </div>
+                `;
+                modal.innerHTML += playerCardOther;
+            }
+        });
+    
+        // Rendre le modal visible
+        modal.classList.remove('d-none');
+    }
+    
+    // Ajouter un événement aux boutons pour filtrer les joueurs
+    function setupPositionButtons() {
+        const positionButtons = document.querySelectorAll('.add-player-btn');
+        const modal = document.querySelector('#modal');
+        positionButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                alert('rani khdama hhhh');
+                // Extraire la position depuis la classe du bouton
+                const positionflt = button.classList[1].toUpperCase(); // Exemple : "lw", "st", etc.
+    
+                // Filtrer les joueurs par position
+                const joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
 
-    //     switch(position) {
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case LB:
-    //             LBbadges.innerHTML = `
-    //                 <div id="lb-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         case GK:
-    //             GKbadges.innerHTML = `
-    //                 <div id="gk-badges" class="badges col-12">
-    //                     badge() 
-    //                 </div>
-    //             `;
-    //             break;
-    //         default:
-    //           // code block
-    //     }
-    // }
+                if (joueurs.length === 0) {
+                    alert('Aucun joueur disponible');
+                    return;
+                }
+
+                const filteredJoueurs = filterPlayers(joueurs, positionflt);
+
+                if (filteredJoueurs.length === 0) {
+                    modal.innerHTML = `<p>Aucun joueur trouvé pour la position ${positionflt}.</p>`;
+                    modal.classList.remove('d-none');
+                    return;
+                }
+    
+                // Afficher les joueurs filtrés
+                renderPlayers(filteredJoueurs);
+            });
+        });
+    
+        // Bouton pour fermer le modal
+        const closeModal = document.querySelector('.close-modal');
+        closeModal.addEventListener('click', function () {
+            modal.classList.add('d-none'); // Cacher le modal
+        });
+    }
+    // console.log(joueurs);
 
 
     positionInput.addEventListener('input', () => affichform());
+    
     addButton.addEventListener('click', (e) => {
         e.preventDefault(); // Prevent default form submission if inside a form
         clique();
     });
+    // initialise button
+    setupPositionButtons();
+
 });
