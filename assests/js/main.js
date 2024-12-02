@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById('modal');
+    // const modal = document.getElementById('modal');
     const positionInput = document.getElementById('player-position');
     const joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
     let position = positionInput.value;
     const addButton = document.getElementById('add-player-button');
+    const modal = document.querySelector('#modal');
 
     // affiiichaaage de formuuulaaaiiiree dynaaamiiique
     function affichform() {
@@ -63,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // stooooockkkeeeeeeeeerrrr le jooooooouuuuuuuuur
+    function savearray() {
+        localStorage.setItem("joueurs", JSON.stringify(joueurs));
+    }
     function saveJrs() {
         const form = document.getElementById('add-player-form');
 
@@ -77,10 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
             jour[key] = value;
         });
 
+        const jourId = Date.now(); 
+
+        jour.id = jourId;
+
         // stocker l'object dons un array
         joueurs.push(jour);
 
-        localStorage.setItem("joueurs", JSON.stringify(joueurs));
+        savearray();
 
         affichjrrmp();
 
@@ -94,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         joueurs.forEach((jour) =>  {
             if(jour.position === 'GK'){
                 cartesjours.innerHTML += `
-                <div class="carte">
+                <div class="carte" data-id="${jour.id}">
                     <div class="badge-image">
                         <img src="assests/images/badge_gold.webp" alt="description">
                         <div class="contenu">
@@ -141,9 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="badge-titre">
                         <div class="d-flex justify-content-center ajmosu">
-                            <button type="submit" class="" onclick="ajoueuipe()"><i class="fa-solid fa-plus"></i></button>
-                            <button type="submit" class="" onclick="supprimer()"><i class="fa-solid fa-trash"></i></button>
-                            <button type="submit" class="" onclick="modifier()"><i class="fa-solid fa-pen"></i></button>
+                            <button type="button" class="supprimer"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="modifier"><i class="fa-solid fa-pen"></i></button>
                         </div>
                     </div> 
                 </div>
@@ -151,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 cartesjours.innerHTML += `
-                <div class="carte">
+                <div class="carte" data-id="${jour.id}">
                     <div class="badge-image">
                         <img src="assests/images/badge_gold.webp" alt="description">
                         <div class="contenu">
@@ -198,9 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="badge-titre">
                         <div class="d-flex justify-content-center ajmosu">
-                            <button type="submit" class="" onclick="ajoueuipe()"><i class="fa-solid fa-plus"></i></button>
-                            <button type="submit" class="" onclick="supprimer()"><i class="fa-solid fa-trash"></i></button>
-                            <button type="submit" class="" onclick="modifier()"><i class="fa-solid fa-pen"></i></button>
+                            <button type="button" class="supprimer"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="modifier"><i class="fa-solid fa-pen"></i></button>
                         </div>
                     </div> 
                 </div>
@@ -238,6 +244,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Affichage spécifique pour les joueurs de position "GK"
             if (jour.position === 'GK') {
                 const playerCardGK = `
+                    <div class="btnclose">
+                        <button type="button" class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                     <div class="cart">
                         <div class="badge-image">
                             <img src="assests/images/badge_gold.webp" alt="description">
@@ -294,6 +303,9 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // Affichage pour les autres joueurs
                 const playerCardOther = `
+                    <div class="btnclose">
+                        <button type="button" class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                     <div class="cart">
                         <div class="badge-image">
                             <img src="assests/images/badge_gold.webp" alt="description">
@@ -353,15 +365,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Rendre le modal visible
         modal.classList.remove('d-none');
     }
-    function ajoueuipe(){
-        alert("ckgdidz")
-
-    }
     
     // Ajouter un événement aux boutons pour filtrer les joueurs
     function setupPositionButtons() {
         const positionButtons = document.querySelectorAll('.add-player-btn');
-        const modal = document.querySelector('#modal');
         positionButtons.forEach(button => {
         console.log(button)
 
@@ -381,7 +388,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const filteredJoueurs = filterPlayers(joueurs, positionflt);
 
                 if (filteredJoueurs.length === 0) {
-                    modal.innerHTML = `<p>Aucun joueur trouvé pour la position ${positionflt}.</p>`;
+                    modal.innerHTML = `
+                        <div class="btnclose">
+                            <button type="button" class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <p>Aucun joueur trouvé pour la position ${positionflt}.</p>`;
                     modal.classList.remove('d-none');
                     return;
                 }
@@ -390,16 +401,76 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderPlayers(filteredJoueurs);
             });
         });
-    
-        // Bouton pour fermer le modal
-        // const closeModal = document.querySelector('.close-modal');
-        // closeModal.addEventListener('click', function () {
-        //     modal.classList.add('d-none'); // Cacher le modal
-        // });
+    }   
+
+    // --------------------------------supprimerJoueur-------------------------------------
+    function supprimerJoueur(playerId) {
+        // joueurs.filter(jour => jour.id !== playerId);
+        joueurs.splice(playerId, 1);
+        cartesjours[playerId].remove();
+        savearray();
+        affichjrrmp();
     }
-    // console.log(joueurs);
+
+    // -------------------------------modifierJoueur--------------------------------------------
+    function modifierJoueur(playerId) {
+        const joueur = joueurs.find(jour => jour.id === playerId);
+    
+        if (joueur) {
+            document.querySelector('#form-name').value = joueur.name;
+            document.querySelector('#form-position').value = joueur.position;
+            document.querySelector('#form-rating').value = joueur.ratingnot;
+            document.querySelector('#form-photo').value = joueur.photo;
+    
+            // Ajouter un attribut pour savoir quel joueur on modifie
+            document.querySelector('#add-player-form').setAttribute('data-player-id', playerId);
+        } 
+        else {
+            alert('Joueur introuvable');
+        }
+    }
+    // ------------sauvegarder modification-------------
+    document.querySelector('#add-player-button').addEventListener('click', function () {
+        const playerId = document.querySelector('#add-player-form').getAttribute('data-player-id');
+        
+        // Trouver le joueur à modifier par son ID
+        const joueur = joueurs.find(jour => jour.id === playerId);
+    
+        if (joueur) {
+            joueur.name = document.querySelector('[data-field="name"]').value;
+            joueur.position = document.querySelector('[data-field="position"]').value;
+            joueur.ratingnot = document.querySelector('[data-field="rating"]').value;
+            joueur.photo = document.querySelector('[data-field="photo"]').value;
+            savearray()            
+            alert('Les modifications ont été enregistrées avec succès.');
+        } 
+        else {
+            alert('Joueur introuvable.');
+        }
+    });
+    
+    
     
 
+    // ----------button innerhtml----------------
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('.close-modal')) {
+            const modal = document.querySelector('#modal');
+            modal.classList.add('d-none'); // Cacher le modal
+        }
+
+        if (event.target.closest('.supprimer')) {
+            const cart = event.target.closest('.cart'); // Trouver la carte parente
+            const playerId = cart.getAttribute('data-id'); // Récupérer l'ID du joueur
+            supprimerJoueur(playerId); // Appeler la fonction de suppression
+        }
+    
+        if (event.target.closest('.modifier')) {
+            const cart = event.target.closest('.cart'); // Trouver la carte parente
+            const playerId = cart.getAttribute('data-id'); // Récupérer l'ID du joueur
+            modifierJoueur(playerId); // Appeler la fonction de modification
+        }
+    });
 
     positionInput.addEventListener('input', () => affichform());
     
@@ -408,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clique();
     });
     // initialise button
-    modal.classList.add('d-none');
+    // modal.classList.add('d-none');
     setupPositionButtons();
 
 });
