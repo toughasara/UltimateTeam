@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // const modal = document.getElementById('modal');
     const positionInput = document.getElementById('player-position');
     const joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
-    let position = positionInput.value;
     const addButton = document.getElementById('add-player-button');
     const modal = document.querySelector('#modal');
+    const cartesjours = document.getElementById('remp');
 
     // affiiichaaage de formuuulaaaiiiree dynaaamiiique
     function affichform() {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // vaaaliiidaaationnn des chaaaammmmps
     function validatform() {
-        const boutonAddPlayer = document.querySelector("button[type='submit']");
+        // const boutonAddPlayer = document.querySelector("button[type='submit']");
         const numerosnot = document.querySelectorAll('.numerosnot');
         const numerosgk = document.querySelectorAll('.numerosgk');
         const inputinfos = document.querySelector('.infos');
@@ -81,9 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             jour[key] = value;
         });
 
-        const jourId = Date.now(); 
-
-        jour.id = jourId;
+        jour.id = Date.now(); 
 
         // stocker l'object dons un array
         joueurs.push(jour);
@@ -97,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // affiiiiichiiiieeeer toooouuuuut jooooooouuuurs
     function affichjrrmp() {
-        const cartesjours = document.getElementById('remp');
         cartesjours.innerHTML = '';
         joueurs.forEach((jour) =>  {
             if(jour.position === 'GK'){
@@ -215,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     affichjrrmp();
+    
 
     // foooonnnctiiooonnement deee button de add player 
     function clique() {
@@ -403,14 +401,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }   
 
-    // --------------------------------supprimerJoueur-------------------------------------
-    function supprimerJoueur(playerId) {
-        // joueurs.filter(jour => jour.id !== playerId);
-        joueurs.splice(playerId, 1);
-        cartesjours[playerId].remove();
-        savearray();
-        affichjrrmp();
-    }
+    // // --------------------------------supprimerJoueur-------------------------------------
+    // function supprimerJoueur(playerId) {
+    //     // joueurs.filter(jour => jour.id !== playerId);
+    //     // const playerId = cart.getAttribute('data-id'); 
+    //     joueurs = joueurs.filter(jour => jour.id !== playerId);
+    //     cartesjours[playerId].remove();
+    //     savearray();
+    //     affichjrrmp();
+    // }
 
     // -------------------------------modifierJoueur--------------------------------------------
     function modifierJoueur(playerId) {
@@ -437,10 +436,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const joueur = joueurs.find(jour => jour.id === playerId);
     
         if (joueur) {
-            joueur.name = document.querySelector('[data-field="name"]').value;
-            joueur.position = document.querySelector('[data-field="position"]').value;
-            joueur.ratingnot = document.querySelector('[data-field="rating"]').value;
-            joueur.photo = document.querySelector('[data-field="photo"]').value;
+            joueur.name = document.querySelector('#form-name').value;
+            joueur.position = document.querySelector('#form-position').value;
+            joueur.ratingnot = document.querySelector('#form-rating').value;
+            joueur.photo = document.querySelector('#form-photo').value;
             savearray()            
             alert('Les modifications ont été enregistrées avec succès.');
         } 
@@ -448,9 +447,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('Joueur introuvable.');
         }
     });
-    
-    
-    
 
     // ----------button innerhtml----------------
     document.addEventListener('click', function (event) {
@@ -460,17 +456,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (event.target.closest('.supprimer')) {
-            const cart = event.target.closest('.cart'); // Trouver la carte parente
-            const playerId = cart.getAttribute('data-id'); // Récupérer l'ID du joueur
-            supprimerJoueur(playerId); // Appeler la fonction de suppression
+            const cart = event.target.closest('.cart'); 
+            if (!cart) {
+                alert('Impossible de trouver un parent avec la classe .cart');
+                return;
+            }
+            const playerId = cart.getAttribute('data-id');
+            if (!playerId) {
+                alert('Erreur : aucun data-id trouvé.');
+                return;
+            }            
+            supprimerJoueur(playerId);
         }
     
         if (event.target.closest('.modifier')) {
-            const cart = event.target.closest('.cart'); // Trouver la carte parente
+            const cart = event.target.closest('.cart');
             const playerId = cart.getAttribute('data-id'); // Récupérer l'ID du joueur
             modifierJoueur(playerId); // Appeler la fonction de modification
         }
     });
+
+     // --------------------------------supprimerJoueur-------------------------------------
+    function supprimerJoueur(playerId) {
+        // joueurs.filter(jour => jour.id !== playerId);
+        // const playerId = cart.getAttribute('data-id'); 
+        joueurs = joueurs.filter(jour => jour.id !== playerId);
+        cartesjours[playerId].remove();
+        savearray();
+        affichjrrmp();
+    }
 
     positionInput.addEventListener('input', () => affichform());
     
