@@ -1,9 +1,9 @@
-#joueurs {
+/* #joueurs {
     position: relative;
-}
+    /* z-index: -2; 
+} */
 .stadium {
     background-image: url("../images/stadium_background.webp");
-    z-index: -1;
     background-size: 100% 50em;
     background-position: center;
     width: auto;
@@ -169,10 +169,11 @@
     background-color: gray;
     padding: 3em;
     z-index: 1;
+    d
 }
 .cart {
-    width: 12.5em;
-    /* min-height: 12em; */
+    width: 12em;
+    /* min-height: 4em; */
     height: 12em;
     overflow: hidden;
     display: flex;

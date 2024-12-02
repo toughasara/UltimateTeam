@@ -353,14 +353,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // Rendre le modal visible
         modal.classList.remove('d-none');
     }
+    function ajoueuipe(){
+        alert("ckgdidz")
+
+    }
     
     // Ajouter un événement aux boutons pour filtrer les joueurs
     function setupPositionButtons() {
         const positionButtons = document.querySelectorAll('.add-player-btn');
         const modal = document.querySelector('#modal');
         positionButtons.forEach(button => {
+        console.log(button)
+
             button.addEventListener('click', function () {
-                alert('rani khdama hhhh');
+                // alert('rani khdama hhhh');
                 // Extraire la position depuis la classe du bouton
                 const positionflt = button.classList[1].toUpperCase(); // Exemple : "lw", "st", etc.
     
@@ -386,12 +392,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     
         // Bouton pour fermer le modal
-        const closeModal = document.querySelector('.close-modal');
-        closeModal.addEventListener('click', function () {
-            modal.classList.add('d-none'); // Cacher le modal
-        });
+        // const closeModal = document.querySelector('.close-modal');
+        // closeModal.addEventListener('click', function () {
+        //     modal.classList.add('d-none'); // Cacher le modal
+        // });
     }
     // console.log(joueurs);
+    
 
 
     positionInput.addEventListener('input', () => affichform());
@@ -401,6 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clique();
     });
     // initialise button
+    modal.classList.add('d-none');
     setupPositionButtons();
 
 });
